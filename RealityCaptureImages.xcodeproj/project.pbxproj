@@ -13,6 +13,14 @@
 		D134EED02693F0E200B236F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D134EECE2693F0E200B236F4 /* Main.storyboard */; };
 		D134EED22693F0E400B236F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D134EED12693F0E400B236F4 /* Assets.xcassets */; };
 		D134EED52693F0E400B236F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D134EED32693F0E400B236F4 /* LaunchScreen.storyboard */; };
+		D134EEDD2693F40B00B236F4 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EEDC2693F40B00B236F4 /* PreviewView.swift */; };
+		D134EEFF269448C200B236F4 /* LeafButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EEFE269448C200B236F4 /* LeafButton.m */; };
+		D134EF0126969F5A00B236F4 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF0026969F5A00B236F4 /* PhotoCaptureDelegate.swift */; };
+		D134EF06269840F300B236F4 /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF05269840F300B236F4 /* PreViewController.swift */; };
+		D134EF08269C256900B236F4 /* SceneForPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF07269C256900B236F4 /* SceneForPhoto.swift */; };
+		D134EF0A269C317C00B236F4 /* PreViewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF09269C317C00B236F4 /* PreViewImage.swift */; };
+		D134EF0F269C3ADD00B236F4 /* TransformAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */; };
+		D134EF11269D2B0F00B236F4 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF10269D2B0F00B236F4 /* LogoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,17 @@
 		D134EED12693F0E400B236F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D134EED42693F0E400B236F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D134EED62693F0E400B236F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D134EEDC2693F40B00B236F4 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		D134EEF8269448AA00B236F4 /* RealityCaptureImages-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RealityCaptureImages-Bridging-Header.h"; sourceTree = "<group>"; };
+		D134EEFD269448C200B236F4 /* LeafButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeafButton.h; sourceTree = "<group>"; };
+		D134EEFE269448C200B236F4 /* LeafButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeafButton.m; sourceTree = "<group>"; };
+		D134EF0026969F5A00B236F4 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
+		D134EF05269840F300B236F4 /* PreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
+		D134EF07269C256900B236F4 /* SceneForPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneForPhoto.swift; sourceTree = "<group>"; };
+		D134EF09269C317C00B236F4 /* PreViewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreViewImage.swift; sourceTree = "<group>"; };
+		D134EF0D269C3ADD00B236F4 /* TransformAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformAssistant.h; sourceTree = "<group>"; };
+		D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformAssistant.m; sourceTree = "<group>"; };
+		D134EF10269D2B0F00B236F4 /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +61,8 @@
 			children = (
 				D134EEC72693F0E200B236F4 /* RealityCaptureImages */,
 				D134EEC62693F0E200B236F4 /* Products */,
+				D134EEF8269448AA00B236F4 /* RealityCaptureImages-Bridging-Header.h */,
+				D134EF02269818A700B236F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +77,8 @@
 		D134EEC72693F0E200B236F4 /* RealityCaptureImages */ = {
 			isa = PBXGroup;
 			children = (
+				D134EF0026969F5A00B236F4 /* PhotoCaptureDelegate.swift */,
+				D134EEFC269448C200B236F4 /* OC */,
 				D134EEC82693F0E200B236F4 /* AppDelegate.swift */,
 				D134EECA2693F0E200B236F4 /* SceneDelegate.swift */,
 				D134EECC2693F0E200B236F4 /* ViewController.swift */,
@@ -63,8 +86,32 @@
 				D134EED12693F0E400B236F4 /* Assets.xcassets */,
 				D134EED32693F0E400B236F4 /* LaunchScreen.storyboard */,
 				D134EED62693F0E400B236F4 /* Info.plist */,
+				D134EEDC2693F40B00B236F4 /* PreviewView.swift */,
+				D134EF05269840F300B236F4 /* PreViewController.swift */,
+				D134EF07269C256900B236F4 /* SceneForPhoto.swift */,
+				D134EF09269C317C00B236F4 /* PreViewImage.swift */,
+				D134EF10269D2B0F00B236F4 /* LogoViewController.swift */,
 			);
 			path = RealityCaptureImages;
+			sourceTree = "<group>";
+		};
+		D134EEFC269448C200B236F4 /* OC */ = {
+			isa = PBXGroup;
+			children = (
+				D134EF0D269C3ADD00B236F4 /* TransformAssistant.h */,
+				D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */,
+				D134EEFD269448C200B236F4 /* LeafButton.h */,
+				D134EEFE269448C200B236F4 /* LeafButton.m */,
+			);
+			name = OC;
+			path = ../../../../Desktop/OC;
+			sourceTree = "<group>";
+		};
+		D134EF02269818A700B236F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,6 +145,7 @@
 				TargetAttributes = {
 					D134EEC42693F0E200B236F4 = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -137,7 +185,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D134EF0A269C317C00B236F4 /* PreViewImage.swift in Sources */,
+				D134EF0126969F5A00B236F4 /* PhotoCaptureDelegate.swift in Sources */,
 				D134EECD2693F0E200B236F4 /* ViewController.swift in Sources */,
+				D134EEFF269448C200B236F4 /* LeafButton.m in Sources */,
+				D134EF06269840F300B236F4 /* PreViewController.swift in Sources */,
+				D134EEDD2693F40B00B236F4 /* PreviewView.swift in Sources */,
+				D134EF11269D2B0F00B236F4 /* LogoViewController.swift in Sources */,
+				D134EF08269C256900B236F4 /* SceneForPhoto.swift in Sources */,
+				D134EF0F269C3ADD00B236F4 /* TransformAssistant.m in Sources */,
 				D134EEC92693F0E200B236F4 /* AppDelegate.swift in Sources */,
 				D134EECB2693F0E200B236F4 /* SceneDelegate.swift in Sources */,
 			);
@@ -286,8 +342,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = M2R4253LC5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RealityCaptureImages/JXPhotoBrowser",
+				);
 				INFOPLIST_FILE = RealityCaptureImages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -296,6 +358,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sytzjt.RealityCaptureImages.RealityCaptureImages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RealityCaptureImages-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -306,8 +371,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = M2R4253LC5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RealityCaptureImages/JXPhotoBrowser",
+				);
 				INFOPLIST_FILE = RealityCaptureImages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -316,6 +387,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sytzjt.RealityCaptureImages.RealityCaptureImages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "RealityCaptureImages-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
