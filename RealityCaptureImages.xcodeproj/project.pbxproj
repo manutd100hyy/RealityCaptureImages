@@ -21,6 +21,7 @@
 		D134EF0A269C317C00B236F4 /* PreViewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF09269C317C00B236F4 /* PreViewImage.swift */; };
 		D134EF0F269C3ADD00B236F4 /* TransformAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */; };
 		D134EF11269D2B0F00B236F4 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF10269D2B0F00B236F4 /* LogoViewController.swift */; };
+		D134EF14269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		D134EF0D269C3ADD00B236F4 /* TransformAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformAssistant.h; sourceTree = "<group>"; };
 		D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformAssistant.m; sourceTree = "<group>"; };
 		D134EF10269D2B0F00B236F4 /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
+		D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreBluetooth.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				D134EF07269C256900B236F4 /* SceneForPhoto.swift */,
 				D134EF09269C317C00B236F4 /* PreViewImage.swift */,
 				D134EF10269D2B0F00B236F4 /* LogoViewController.swift */,
+				D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */,
 			);
 			path = RealityCaptureImages;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			files = (
 				D134EF0A269C317C00B236F4 /* PreViewImage.swift in Sources */,
 				D134EF0126969F5A00B236F4 /* PhotoCaptureDelegate.swift in Sources */,
+				D134EF14269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift in Sources */,
 				D134EECD2693F0E200B236F4 /* ViewController.swift in Sources */,
 				D134EEFF269448C200B236F4 /* LeafButton.m in Sources */,
 				D134EF06269840F300B236F4 /* PreViewController.swift in Sources */,

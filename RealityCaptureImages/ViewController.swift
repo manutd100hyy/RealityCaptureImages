@@ -9,6 +9,8 @@ import UIKit
 import AVFoundation
 import CoreLocation
 import Photos
+import CoreBluetooth
+import os
 
 class ViewController: UIViewController {
     
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
     }
 
     var captureImgName: String?
+    var laseringImgName:String?
     var btnCapture: LeafButton!
     var imagesCounter = 0
     var isLasering = false
@@ -43,6 +46,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var btnPreView: UIButton!
     @IBOutlet weak var labImageNum: UILabel!
+    @IBOutlet weak var btnLaserFlag: UIButton!
+    @IBOutlet weak var pinLaserCenter: UIButton!
     
     private let photoOutput = AVCapturePhotoOutput()
     private var selectedSemanticSegmentationMatteTypes = [AVSemanticSegmentationMatte.MatteType]()
@@ -69,6 +74,17 @@ class ViewController: UIViewController {
     private var depthDataDeliveryMode: DepthDataDeliveryMode = .off
     private var portraitEffectsMatteDeliveryMode: PortraitEffectsMatteDeliveryMode = .off
     private var photoQualityPrioritizationMode: AVCapturePhotoOutput.QualityPrioritization = .balanced
+    
+    //core bluetooth part.
+    var centralManager: CBCentralManager!
+    var discoveredPeripheral: CBPeripheral?
+    var transferCharacteristic: CBCharacteristic?
+    let serviceUUID = CBUUID(string: "0000FFF0-0000-1000-8000-00805F9B34FB")
+    let characteristicUUID = CBUUID(string: "0000FFF2-0000-1000-8000-00805F9B34FB")
+    let characteristicUUID_Notify = CBUUID(string: "0000FFF1-0000-1000-8000-00805F9B34FB")
+    var writeIterationsComplete = 0
+    var connectionIterationsComplete = 0
+    let defaultIterations = 5     // change this value based on test usecase
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,6 +153,8 @@ class ViewController: UIViewController {
             }
             self.view.addSubview(self.btnCapture);
         }
+        
+        centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionShowPowerAlertKey: true])
     }
     
     
@@ -323,6 +341,10 @@ class ViewController: UIViewController {
             }
         }
         
+        // Don't keep it going while we're not showing.
+        centralManager.stopScan()
+        os_log("Scanning stopped")
+        
         super.viewWillDisappear(animated)
     }
     
@@ -362,10 +384,14 @@ class ViewController: UIViewController {
         if !self.isLasering {
             sender.setImage(UIImage.init(systemName: "flag"), for: .normal)
             sender.tintColor = UIColor.red
+            applyCommand(cmd: .turnon)
+            self.pinLaserCenter.isHidden = false
         }
         else {
             sender.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
             sender.tintColor = UIColor.black
+            applyCommand(cmd: .turnoff)
+            self.pinLaserCenter.isHidden = true
         }
         
         self.isLasering = !self.isLasering
@@ -451,8 +477,58 @@ class ViewController: UIViewController {
         //获取当前时间
 
         self.captureImgName = self.getCurrentTime()
+        
+        if self.isLasering {
+            //设置读取距离时的按钮状态:提示按钮变图标，瞄准框隐藏
+            self.isLasering = false
+            pinLaserCenter.isHidden = true
+            btnLaserFlag.setImage(UIImage.init(systemName: "flag.fill"), for: .normal)
+            btnLaserFlag.isEnabled = false
+
+            self.laseringImgName = self.captureImgName
+            applyCommand(cmd: .measure)
+        }
     }
     
+    func updateLaserDataIfNeeds(_ dist:String?) {
+        guard let imgName = self.laseringImgName else { return }
+        
+        guard let dist = dist else {
+            self.laseringImgName = nil
+            btnLaserFlag.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
+            btnLaserFlag.tintColor = UIColor.black
+            btnLaserFlag.isEnabled = true
+            let alertController = UIAlertController(title: "警告", message: "获取激光距离失败，请重试!", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        let distPath = NSHomeDirectory() + "/Documents/Cache/dist.plist"
+
+        let obj = NSMutableDictionary.init()
+        obj.setValue(imgName, forKey: "imgName")
+        obj.setValue(dist, forKey: "dist")
+        
+        var distDict:NSMutableDictionary = NSMutableDictionary.init()
+        if FileManager.default.fileExists(atPath: distPath) {
+            distDict = NSMutableDictionary.init(contentsOfFile: distPath)!
+            let arr = distDict["arr"] as! NSMutableArray
+            arr.add(obj)
+        }
+        else {
+            let arr = NSMutableArray.init(object: obj)
+            distDict.setValue(arr, forKey: "arr")
+        }
+        
+        distDict.write(toFile: distPath, atomically: true)
+        
+        self.laseringImgName = nil
+        btnLaserFlag.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
+        btnLaserFlag.tintColor = UIColor.black
+        btnLaserFlag.isEnabled = true
+    }
 
     @IBAction func btnPreViewAction(_ sender: Any) {
         if self.imagesCounter < 4 {
@@ -475,8 +551,8 @@ class ViewController: UIViewController {
         self.labImageNum.isHidden = false
         self.labImageNum.text = String.init(format: "共%d张", self.imagesCounter)
     }
-    
 }
+
 extension ViewController: AVCapturePhotoCaptureDelegate {
     /// - Tag: WillCapturePhoto
     func photoOutput(_ output: AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {

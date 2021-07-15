@@ -40,7 +40,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPA-9A-lsI">
+                                    <button hidden="YES" opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPA-9A-lsI">
                                         <rect key="frame" x="1104" y="237" width="40" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -55,13 +55,13 @@
                                             <action selector="doLaserDist:" destination="BYZ-38-t0r" eventType="touchUpInside" id="faT-vw-FMX"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-tz-Czd">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvi-tz-Czd">
                                         <rect key="frame" x="577" y="387" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="DaC-fJ-Yzu"/>
                                             <constraint firstAttribute="height" constant="40" id="FnV-K1-dmb"/>
                                         </constraints>
-                                        <color key="tintColor" systemColor="systemGroupedBackgroundColor"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" image="circle.dashed" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="35"/>
                                         </state>
@@ -113,8 +113,10 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="u3o-oa-Sng"/>
                     <connections>
+                        <outlet property="btnLaserFlag" destination="RPA-9A-lsI" id="YSj-sg-hX9"/>
                         <outlet property="btnPreView" destination="6or-Zv-iKm" id="20n-9a-dKX"/>
                         <outlet property="labImageNum" destination="YgL-xX-Flo" id="k3G-tx-Gjw"/>
+                        <outlet property="pinLaserCenter" destination="rvi-tz-Czd" id="Lhs-1h-Khq"/>
                         <outlet property="previewView" destination="gfu-yx-lFX" id="9bH-dj-vLJ"/>
                     </connections>
                 </viewController>
@@ -353,8 +355,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
