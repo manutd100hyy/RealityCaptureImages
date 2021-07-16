@@ -26,13 +26,6 @@ class PreViewController: UIViewController {
         self.loadImgIfNeeds()
     }
     
-    @IBAction func bactToCameraView(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier:"CapturePhoto")
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
-    }
-    
     func loadImgIfNeeds() {
         if self.curImgIndex < 0, self.imgNames.count < 1 {
             return
@@ -55,16 +48,6 @@ class PreViewController: UIViewController {
         }
     }
     
-    @IBAction func btnBackAction(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier:"LogoView")
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnSaveAction(_ sender: Any) {
-        
-    }
     @IBAction func btnDelAction(_ sender: Any) {
         if imgNames.count == 4 {
             let alertController = UIAlertController(title: "警告", message: "照片数量不能低于4张!", preferredStyle: .alert)

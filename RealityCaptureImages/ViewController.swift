@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     var btnCapture: LeafButton!
     var imagesCounter = 0
     var isLasering = false
+    var infoDict:NSMutableDictionary!
     
     @IBOutlet weak var previewView: PreviewView!
     @IBOutlet weak var btnPreView: UIButton!
@@ -155,6 +156,16 @@ class ViewController: UIViewController {
         }
         
         centralManager = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionShowPowerAlertKey: true])
+        
+        
+        
+        let dictPath = NSHomeDirectory() + "/Documents/infoDict.plist"
+        if FileManager.default.fileExists(atPath: dictPath) {
+            infoDict = NSMutableDictionary.init(contentsOfFile: dictPath)
+        }
+        else {
+            infoDict = NSMutableDictionary.init()
+        }
     }
     
     
@@ -320,7 +331,7 @@ class ViewController: UIViewController {
             }
         }
         
-        if let names = try? FileManager.default.contentsOfDirectory(atPath: generateFilePath(nil, "Thumb")) {
+        if let names = try? FileManager.default.contentsOfDirectory(atPath: NSHomeDirectory() + "/Documents/Thumb/") {
             self.imagesCounter = names.filter({
                 $0.contains(".jpg")
             }).count
@@ -401,13 +412,6 @@ class ViewController: UIViewController {
         focus(with: .autoFocus, exposureMode: .autoExpose, at: devicePoint, monitorSubjectAreaChange: true)
     }
     
-    @IBAction func btnBackToMainView(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier:"LogoView")
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
-    }
-    
     private func focus(with focusMode: AVCaptureDevice.FocusMode,
                        exposureMode: AVCaptureDevice.ExposureMode,
                        at devicePoint: CGPoint,
@@ -477,17 +481,27 @@ class ViewController: UIViewController {
         //获取当前时间
 
         self.captureImgName = self.getCurrentTime()
-        
+                
         if self.isLasering {
             //设置读取距离时的按钮状态:提示按钮变图标，瞄准框隐藏
             self.isLasering = false
             pinLaserCenter.isHidden = true
             btnLaserFlag.setImage(UIImage.init(systemName: "flag.fill"), for: .normal)
             btnLaserFlag.isEnabled = false
+            btnPreView.isEnabled = false
 
             self.laseringImgName = self.captureImgName
             applyCommand(cmd: .measure)
         }
+    }
+    
+    func updateCaseInfoIfNeeds() {
+        if infoDict.object(forKey: "preview") != nil {
+            return
+        }
+        
+        infoDict.setValue( self.captureImgName, forKey: "preview")
+        infoDict.write(toFile: NSHomeDirectory() + "/Documents/infoDict.plist", atomically: true)
     }
     
     func updateLaserDataIfNeeds(_ dist:String?) {
@@ -505,29 +519,25 @@ class ViewController: UIViewController {
             return
         }
         
-        let distPath = NSHomeDirectory() + "/Documents/Cache/dist.plist"
-
+        var arr = infoDict.object(forKey: "arr") as? NSMutableArray
+        if arr == nil {
+            arr = NSMutableArray.init()
+            infoDict.setValue(arr, forKey: "arr")
+        }
+        
         let obj = NSMutableDictionary.init()
         obj.setValue(imgName, forKey: "imgName")
         obj.setValue(dist, forKey: "dist")
         
-        var distDict:NSMutableDictionary = NSMutableDictionary.init()
-        if FileManager.default.fileExists(atPath: distPath) {
-            distDict = NSMutableDictionary.init(contentsOfFile: distPath)!
-            let arr = distDict["arr"] as! NSMutableArray
-            arr.add(obj)
-        }
-        else {
-            let arr = NSMutableArray.init(object: obj)
-            distDict.setValue(arr, forKey: "arr")
-        }
+        arr!.add(obj)
         
-        distDict.write(toFile: distPath, atomically: true)
-        
+        infoDict.write(toFile: NSHomeDirectory() + "/Documents/infoDict.plist", atomically: true)
+
         self.laseringImgName = nil
         btnLaserFlag.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
         btnLaserFlag.tintColor = UIColor.black
         btnLaserFlag.isEnabled = true
+        btnPreView.isEnabled = true
     }
 
     @IBAction func btnPreViewAction(_ sender: Any) {
@@ -583,7 +593,9 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
         }
         
         try? image.reSizeImage(reSize: CGSize.init(width: 140, height: 105)).jpegData(compressionQuality: 0.1)?.write(to: URL.init(fileURLWithPath: generateFilePath(imgName, "Thumb")))
-        
+                
+        updateCaseInfoIfNeeds()
+    
         self.captureImgName = nil;
     }
 }

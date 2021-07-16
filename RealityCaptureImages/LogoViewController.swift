@@ -19,18 +19,7 @@ class LogoViewController: UIViewController {
     @IBAction func btnNewCaseAction(_ sender: Any) {
         deleteFileFromPath(nil, "Cache")
         deleteFileFromPath(nil, "Thumb")
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier:"CapturePhoto")
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnLoadCaseAction(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier:"PreView")
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        deleteFileFromPath("infoDict.plist", nil)
     }
     
     @IBAction func btnMoreCasesAction(_ sender: Any) {

@@ -22,6 +22,8 @@
 		D134EF0F269C3ADD00B236F4 /* TransformAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */; };
 		D134EF11269D2B0F00B236F4 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF10269D2B0F00B236F4 /* LogoViewController.swift */; };
 		D134EF14269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */; };
+		D134EF1626A0150200B236F4 /* BrowseCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF1526A0150100B236F4 /* BrowseCaseViewController.swift */; };
+		D134EF1826A0264000B236F4 /* SaveCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF1726A0264000B236F4 /* SaveCaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformAssistant.m; sourceTree = "<group>"; };
 		D134EF10269D2B0F00B236F4 /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
 		D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreBluetooth.swift"; sourceTree = "<group>"; };
+		D134EF1526A0150100B236F4 /* BrowseCaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCaseViewController.swift; sourceTree = "<group>"; };
+		D134EF1726A0264000B236F4 /* SaveCaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 				D134EF09269C317C00B236F4 /* PreViewImage.swift */,
 				D134EF10269D2B0F00B236F4 /* LogoViewController.swift */,
 				D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */,
+				D134EF1526A0150100B236F4 /* BrowseCaseViewController.swift */,
+				D134EF1726A0264000B236F4 /* SaveCaseViewController.swift */,
 			);
 			path = RealityCaptureImages;
 			sourceTree = "<group>";
@@ -189,12 +195,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D134EF0A269C317C00B236F4 /* PreViewImage.swift in Sources */,
+				D134EF1826A0264000B236F4 /* SaveCaseViewController.swift in Sources */,
 				D134EF0126969F5A00B236F4 /* PhotoCaptureDelegate.swift in Sources */,
 				D134EF14269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift in Sources */,
 				D134EECD2693F0E200B236F4 /* ViewController.swift in Sources */,
 				D134EEFF269448C200B236F4 /* LeafButton.m in Sources */,
 				D134EF06269840F300B236F4 /* PreViewController.swift in Sources */,
 				D134EEDD2693F40B00B236F4 /* PreviewView.swift in Sources */,
+				D134EF1626A0150200B236F4 /* BrowseCaseViewController.swift in Sources */,
 				D134EF11269D2B0F00B236F4 /* LogoViewController.swift in Sources */,
 				D134EF08269C256900B236F4 /* SceneForPhoto.swift in Sources */,
 				D134EF0F269C3ADD00B236F4 /* TransformAssistant.m in Sources */,
