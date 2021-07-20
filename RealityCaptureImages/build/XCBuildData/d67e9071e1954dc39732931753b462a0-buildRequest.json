@@ -1,0 +1,63 @@
+{
+  "buildCommand" : "prepareForIndexing",
+  "configuredTargets" : [
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c4130c372e239e39e22dd2b9d9c2bc3b7bb44"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c41301c56baabd6931b40d15248de30d7ca39"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c413014735b97ec3f639c124e2f2656d45d62"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c41306f54b317e8a6d41865000c704405f488"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c413024887e22d3ef1aa13b9406d85369a29e"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c41306089f1f2a4e4610b29e5d324d1d33e82"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c4130045574ccb66a73befc30c5436df139c4"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c41306efe4801781b609436bea807798d0495"
+    },
+    {
+      "guid" : "d37087289b12a40f63ab0a31712c4130c39e174dd089827e4aa436a475f5a2a2"
+    }
+  ],
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/sytz/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/sytz/Library/Developer/Xcode/DerivedData/Pods-gdrbprcvjuwwxrcxgsuitceyhbtg/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/sytz/Library/Developer/Xcode/DerivedData/Pods-gdrbprcvjuwwxrcxgsuitceyhbtg/Index/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : false
+}

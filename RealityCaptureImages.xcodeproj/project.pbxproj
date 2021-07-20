@@ -14,16 +14,36 @@
 		D134EED22693F0E400B236F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D134EED12693F0E400B236F4 /* Assets.xcassets */; };
 		D134EED52693F0E400B236F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D134EED32693F0E400B236F4 /* LaunchScreen.storyboard */; };
 		D134EEDD2693F40B00B236F4 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EEDC2693F40B00B236F4 /* PreviewView.swift */; };
-		D134EEFF269448C200B236F4 /* LeafButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EEFE269448C200B236F4 /* LeafButton.m */; };
 		D134EF0126969F5A00B236F4 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF0026969F5A00B236F4 /* PhotoCaptureDelegate.swift */; };
 		D134EF06269840F300B236F4 /* PreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF05269840F300B236F4 /* PreViewController.swift */; };
 		D134EF08269C256900B236F4 /* SceneForPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF07269C256900B236F4 /* SceneForPhoto.swift */; };
 		D134EF0A269C317C00B236F4 /* PreViewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF09269C317C00B236F4 /* PreViewImage.swift */; };
-		D134EF0F269C3ADD00B236F4 /* TransformAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */; };
 		D134EF11269D2B0F00B236F4 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF10269D2B0F00B236F4 /* LogoViewController.swift */; };
 		D134EF14269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */; };
 		D134EF1626A0150200B236F4 /* BrowseCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF1526A0150100B236F4 /* BrowseCaseViewController.swift */; };
 		D134EF1826A0264000B236F4 /* SaveCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134EF1726A0264000B236F4 /* SaveCaseViewController.swift */; };
+		D134EF3526A574E900B236F4 /* TransformAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EF3326A574E900B236F4 /* TransformAssistant.m */; };
+		D134EF3626A574E900B236F4 /* LeafButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EF3426A574E900B236F4 /* LeafButton.m */; };
+		D134EF5D26A5750C00B236F4 /* mz_strm_os_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF3B26A5750C00B236F4 /* mz_strm_os_posix.c */; };
+		D134EF5E26A5750C00B236F4 /* mz_strm_pkcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF3C26A5750C00B236F4 /* mz_strm_pkcrypt.c */; };
+		D134EF5F26A5750C00B236F4 /* mz_strm_zlib.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF3F26A5750C00B236F4 /* mz_strm_zlib.c */; };
+		D134EF6026A5750C00B236F4 /* mz_zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4026A5750C00B236F4 /* mz_zip.c */; };
+		D134EF6126A5750C00B236F4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D134EF4226A5750C00B236F4 /* LICENSE */; };
+		D134EF6226A5750C00B236F4 /* mz_zip_rw.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4326A5750C00B236F4 /* mz_zip_rw.c */; };
+		D134EF6326A5750C00B236F4 /* mz_crypt_apple.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4626A5750C00B236F4 /* mz_crypt_apple.c */; };
+		D134EF6426A5750C00B236F4 /* mz_strm_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4826A5750C00B236F4 /* mz_strm_mem.c */; };
+		D134EF6526A5750C00B236F4 /* mz_crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4926A5750C00B236F4 /* mz_crypt.c */; };
+		D134EF6626A5750C00B236F4 /* mz_strm_wzaes.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4A26A5750C00B236F4 /* mz_strm_wzaes.c */; };
+		D134EF6726A5750C00B236F4 /* mz_compat.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4C26A5750C00B236F4 /* mz_compat.c */; };
+		D134EF6826A5750C00B236F4 /* mz_os.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF4F26A5750C00B236F4 /* mz_os.c */; };
+		D134EF6926A5750C00B236F4 /* mz_os_posix.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF5126A5750C00B236F4 /* mz_os_posix.c */; };
+		D134EF6A26A5750C00B236F4 /* mz_strm_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF5326A5750C00B236F4 /* mz_strm_buf.c */; };
+		D134EF6B26A5750C00B236F4 /* mz_strm_split.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF5426A5750C00B236F4 /* mz_strm_split.c */; };
+		D134EF6C26A5750C00B236F4 /* mz_strm.c in Sources */ = {isa = PBXBuildFile; fileRef = D134EF5726A5750C00B236F4 /* mz_strm.c */; };
+		D134EF6D26A5750C00B236F4 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = D134EF5B26A5750C00B236F4 /* SSZipArchive.m */; };
+		D134EF7026A5753700B236F4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D134EF6F26A5753700B236F4 /* libz.tbd */; };
+		D134EF7226A5753E00B236F4 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D134EF7126A5753E00B236F4 /* libiconv.tbd */; };
+		D134EF7426A5754B00B236F4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D134EF7326A5754B00B236F4 /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,18 +57,55 @@
 		D134EED62693F0E400B236F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D134EEDC2693F40B00B236F4 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		D134EEF8269448AA00B236F4 /* RealityCaptureImages-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RealityCaptureImages-Bridging-Header.h"; sourceTree = "<group>"; };
-		D134EEFD269448C200B236F4 /* LeafButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeafButton.h; sourceTree = "<group>"; };
-		D134EEFE269448C200B236F4 /* LeafButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeafButton.m; sourceTree = "<group>"; };
 		D134EF0026969F5A00B236F4 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		D134EF05269840F300B236F4 /* PreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreViewController.swift; sourceTree = "<group>"; };
 		D134EF07269C256900B236F4 /* SceneForPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneForPhoto.swift; sourceTree = "<group>"; };
 		D134EF09269C317C00B236F4 /* PreViewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreViewImage.swift; sourceTree = "<group>"; };
-		D134EF0D269C3ADD00B236F4 /* TransformAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformAssistant.h; sourceTree = "<group>"; };
-		D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformAssistant.m; sourceTree = "<group>"; };
 		D134EF10269D2B0F00B236F4 /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
 		D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreBluetooth.swift"; sourceTree = "<group>"; };
 		D134EF1526A0150100B236F4 /* BrowseCaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseCaseViewController.swift; sourceTree = "<group>"; };
 		D134EF1726A0264000B236F4 /* SaveCaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCaseViewController.swift; sourceTree = "<group>"; };
+		D134EF3126A574E900B236F4 /* LeafButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeafButton.h; path = RealityCaptureImages/OC/LeafButton.h; sourceTree = SOURCE_ROOT; };
+		D134EF3226A574E900B236F4 /* TransformAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransformAssistant.h; path = RealityCaptureImages/OC/TransformAssistant.h; sourceTree = SOURCE_ROOT; };
+		D134EF3326A574E900B236F4 /* TransformAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransformAssistant.m; path = RealityCaptureImages/OC/TransformAssistant.m; sourceTree = SOURCE_ROOT; };
+		D134EF3426A574E900B236F4 /* LeafButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeafButton.m; path = RealityCaptureImages/OC/LeafButton.m; sourceTree = SOURCE_ROOT; };
+		D134EF3926A5750C00B236F4 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		D134EF3B26A5750C00B236F4 /* mz_strm_os_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_os_posix.c; sourceTree = "<group>"; };
+		D134EF3C26A5750C00B236F4 /* mz_strm_pkcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_pkcrypt.c; sourceTree = "<group>"; };
+		D134EF3D26A5750C00B236F4 /* mz_strm_wzaes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm_wzaes.h; sourceTree = "<group>"; };
+		D134EF3E26A5750C00B236F4 /* mz_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_compat.h; sourceTree = "<group>"; };
+		D134EF3F26A5750C00B236F4 /* mz_strm_zlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_zlib.c; sourceTree = "<group>"; };
+		D134EF4026A5750C00B236F4 /* mz_zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_zip.c; sourceTree = "<group>"; };
+		D134EF4126A5750C00B236F4 /* mz_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_os.h; sourceTree = "<group>"; };
+		D134EF4226A5750C00B236F4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D134EF4326A5750C00B236F4 /* mz_zip_rw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_zip_rw.c; sourceTree = "<group>"; };
+		D134EF4426A5750C00B236F4 /* mz_strm_split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm_split.h; sourceTree = "<group>"; };
+		D134EF4526A5750C00B236F4 /* mz_strm_buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm_buf.h; sourceTree = "<group>"; };
+		D134EF4626A5750C00B236F4 /* mz_crypt_apple.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_crypt_apple.c; sourceTree = "<group>"; };
+		D134EF4726A5750C00B236F4 /* mz_strm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm.h; sourceTree = "<group>"; };
+		D134EF4826A5750C00B236F4 /* mz_strm_mem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_mem.c; sourceTree = "<group>"; };
+		D134EF4926A5750C00B236F4 /* mz_crypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_crypt.c; sourceTree = "<group>"; };
+		D134EF4A26A5750C00B236F4 /* mz_strm_wzaes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_wzaes.c; sourceTree = "<group>"; };
+		D134EF4B26A5750C00B236F4 /* mz_strm_zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm_zlib.h; sourceTree = "<group>"; };
+		D134EF4C26A5750C00B236F4 /* mz_compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_compat.c; sourceTree = "<group>"; };
+		D134EF4D26A5750C00B236F4 /* mz_strm_pkcrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm_pkcrypt.h; sourceTree = "<group>"; };
+		D134EF4E26A5750C00B236F4 /* mz_zip_rw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_zip_rw.h; sourceTree = "<group>"; };
+		D134EF4F26A5750C00B236F4 /* mz_os.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_os.c; sourceTree = "<group>"; };
+		D134EF5026A5750C00B236F4 /* mz_zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_zip.h; sourceTree = "<group>"; };
+		D134EF5126A5750C00B236F4 /* mz_os_posix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_os_posix.c; sourceTree = "<group>"; };
+		D134EF5226A5750C00B236F4 /* mz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz.h; sourceTree = "<group>"; };
+		D134EF5326A5750C00B236F4 /* mz_strm_buf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_buf.c; sourceTree = "<group>"; };
+		D134EF5426A5750C00B236F4 /* mz_strm_split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm_split.c; sourceTree = "<group>"; };
+		D134EF5526A5750C00B236F4 /* mz_crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_crypt.h; sourceTree = "<group>"; };
+		D134EF5626A5750C00B236F4 /* mz_strm_mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm_mem.h; sourceTree = "<group>"; };
+		D134EF5726A5750C00B236F4 /* mz_strm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mz_strm.c; sourceTree = "<group>"; };
+		D134EF5826A5750C00B236F4 /* mz_strm_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mz_strm_os.h; sourceTree = "<group>"; };
+		D134EF5926A5750C00B236F4 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		D134EF5A26A5750C00B236F4 /* SSZipCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipCommon.h; sourceTree = "<group>"; };
+		D134EF5B26A5750C00B236F4 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		D134EF6F26A5753700B236F4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D134EF7126A5753E00B236F4 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		D134EF7326A5754B00B236F4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +113,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D134EF7426A5754B00B236F4 /* Security.framework in Frameworks */,
+				D134EF7226A5753E00B236F4 /* libiconv.tbd in Frameworks */,
+				D134EF7026A5753700B236F4 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,10 +167,11 @@
 		D134EEFC269448C200B236F4 /* OC */ = {
 			isa = PBXGroup;
 			children = (
-				D134EF0D269C3ADD00B236F4 /* TransformAssistant.h */,
-				D134EF0E269C3ADD00B236F4 /* TransformAssistant.m */,
-				D134EEFD269448C200B236F4 /* LeafButton.h */,
-				D134EEFE269448C200B236F4 /* LeafButton.m */,
+				D134EF3726A5750C00B236F4 /* SSZipArchive */,
+				D134EF3126A574E900B236F4 /* LeafButton.h */,
+				D134EF3426A574E900B236F4 /* LeafButton.m */,
+				D134EF3226A574E900B236F4 /* TransformAssistant.h */,
+				D134EF3326A574E900B236F4 /* TransformAssistant.m */,
 			);
 			name = OC;
 			path = ../../../../Desktop/OC;
@@ -119,8 +180,69 @@
 		D134EF02269818A700B236F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D134EF7326A5754B00B236F4 /* Security.framework */,
+				D134EF7126A5753E00B236F4 /* libiconv.tbd */,
+				D134EF6F26A5753700B236F4 /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D134EF3726A5750C00B236F4 /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				D134EF3826A5750C00B236F4 /* include */,
+				D134EF3A26A5750C00B236F4 /* minizip */,
+				D134EF5926A5750C00B236F4 /* SSZipArchive.h */,
+				D134EF5A26A5750C00B236F4 /* SSZipCommon.h */,
+				D134EF5B26A5750C00B236F4 /* SSZipArchive.m */,
+			);
+			name = SSZipArchive;
+			path = RealityCaptureImages/OC/SSZipArchive;
+			sourceTree = SOURCE_ROOT;
+		};
+		D134EF3826A5750C00B236F4 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D134EF3926A5750C00B236F4 /* ZipArchive.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D134EF3A26A5750C00B236F4 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				D134EF3B26A5750C00B236F4 /* mz_strm_os_posix.c */,
+				D134EF3C26A5750C00B236F4 /* mz_strm_pkcrypt.c */,
+				D134EF3D26A5750C00B236F4 /* mz_strm_wzaes.h */,
+				D134EF3E26A5750C00B236F4 /* mz_compat.h */,
+				D134EF3F26A5750C00B236F4 /* mz_strm_zlib.c */,
+				D134EF4026A5750C00B236F4 /* mz_zip.c */,
+				D134EF4126A5750C00B236F4 /* mz_os.h */,
+				D134EF4226A5750C00B236F4 /* LICENSE */,
+				D134EF4326A5750C00B236F4 /* mz_zip_rw.c */,
+				D134EF4426A5750C00B236F4 /* mz_strm_split.h */,
+				D134EF4526A5750C00B236F4 /* mz_strm_buf.h */,
+				D134EF4626A5750C00B236F4 /* mz_crypt_apple.c */,
+				D134EF4726A5750C00B236F4 /* mz_strm.h */,
+				D134EF4826A5750C00B236F4 /* mz_strm_mem.c */,
+				D134EF4926A5750C00B236F4 /* mz_crypt.c */,
+				D134EF4A26A5750C00B236F4 /* mz_strm_wzaes.c */,
+				D134EF4B26A5750C00B236F4 /* mz_strm_zlib.h */,
+				D134EF4C26A5750C00B236F4 /* mz_compat.c */,
+				D134EF4D26A5750C00B236F4 /* mz_strm_pkcrypt.h */,
+				D134EF4E26A5750C00B236F4 /* mz_zip_rw.h */,
+				D134EF4F26A5750C00B236F4 /* mz_os.c */,
+				D134EF5026A5750C00B236F4 /* mz_zip.h */,
+				D134EF5126A5750C00B236F4 /* mz_os_posix.c */,
+				D134EF5226A5750C00B236F4 /* mz.h */,
+				D134EF5326A5750C00B236F4 /* mz_strm_buf.c */,
+				D134EF5426A5750C00B236F4 /* mz_strm_split.c */,
+				D134EF5526A5750C00B236F4 /* mz_crypt.h */,
+				D134EF5626A5750C00B236F4 /* mz_strm_mem.h */,
+				D134EF5726A5750C00B236F4 /* mz_strm.c */,
+				D134EF5826A5750C00B236F4 /* mz_strm_os.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +305,7 @@
 			files = (
 				D134EED52693F0E400B236F4 /* LaunchScreen.storyboard in Resources */,
 				D134EED22693F0E400B236F4 /* Assets.xcassets in Resources */,
+				D134EF6126A5750C00B236F4 /* LICENSE in Resources */,
 				D134EED02693F0E200B236F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,18 +318,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				D134EF0A269C317C00B236F4 /* PreViewImage.swift in Sources */,
+				D134EF5D26A5750C00B236F4 /* mz_strm_os_posix.c in Sources */,
+				D134EF6626A5750C00B236F4 /* mz_strm_wzaes.c in Sources */,
+				D134EF6B26A5750C00B236F4 /* mz_strm_split.c in Sources */,
 				D134EF1826A0264000B236F4 /* SaveCaseViewController.swift in Sources */,
+				D134EF6526A5750C00B236F4 /* mz_crypt.c in Sources */,
+				D134EF6C26A5750C00B236F4 /* mz_strm.c in Sources */,
+				D134EF3526A574E900B236F4 /* TransformAssistant.m in Sources */,
+				D134EF6026A5750C00B236F4 /* mz_zip.c in Sources */,
 				D134EF0126969F5A00B236F4 /* PhotoCaptureDelegate.swift in Sources */,
 				D134EF14269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift in Sources */,
 				D134EECD2693F0E200B236F4 /* ViewController.swift in Sources */,
-				D134EEFF269448C200B236F4 /* LeafButton.m in Sources */,
+				D134EF6426A5750C00B236F4 /* mz_strm_mem.c in Sources */,
 				D134EF06269840F300B236F4 /* PreViewController.swift in Sources */,
 				D134EEDD2693F40B00B236F4 /* PreviewView.swift in Sources */,
 				D134EF1626A0150200B236F4 /* BrowseCaseViewController.swift in Sources */,
+				D134EF6926A5750C00B236F4 /* mz_os_posix.c in Sources */,
+				D134EF5F26A5750C00B236F4 /* mz_strm_zlib.c in Sources */,
+				D134EF5E26A5750C00B236F4 /* mz_strm_pkcrypt.c in Sources */,
 				D134EF11269D2B0F00B236F4 /* LogoViewController.swift in Sources */,
 				D134EF08269C256900B236F4 /* SceneForPhoto.swift in Sources */,
-				D134EF0F269C3ADD00B236F4 /* TransformAssistant.m in Sources */,
+				D134EF6226A5750C00B236F4 /* mz_zip_rw.c in Sources */,
+				D134EF3626A574E900B236F4 /* LeafButton.m in Sources */,
 				D134EEC92693F0E200B236F4 /* AppDelegate.swift in Sources */,
+				D134EF6826A5750C00B236F4 /* mz_os.c in Sources */,
+				D134EF6A26A5750C00B236F4 /* mz_strm_buf.c in Sources */,
+				D134EF6D26A5750C00B236F4 /* SSZipArchive.m in Sources */,
+				D134EF6326A5750C00B236F4 /* mz_crypt_apple.c in Sources */,
+				D134EF6726A5750C00B236F4 /* mz_compat.c in Sources */,
 				D134EECB2693F0E200B236F4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +500,16 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RealityCaptureImages/JXPhotoBrowser",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					HAVE_INTTYPES_H,
+					HAVE_PKCRYPT,
+					HAVE_STDINT_H,
+					HAVE_WZAES,
+					HAVE_ZLIB,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = RealityCaptureImages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -390,6 +539,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/RealityCaptureImages/JXPhotoBrowser",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HAVE_INTTYPES_H,
+					HAVE_PKCRYPT,
+					HAVE_STDINT_H,
+					HAVE_WZAES,
+					HAVE_ZLIB,
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = RealityCaptureImages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;

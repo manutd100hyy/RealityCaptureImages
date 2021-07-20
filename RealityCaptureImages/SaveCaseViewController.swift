@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class SaveCaseViewController: UIViewController {
     
     var workDir = NSHomeDirectory() + "/Documents/"
@@ -75,6 +74,22 @@ class SaveCaseViewController: UIViewController {
         copyFilesFrom(dirName)
     }
     @IBAction func btnUploadCaseAction(_ sender: Any) {
+        guard let infoDict = NSMutableDictionary.init(contentsOfFile: workDir + "infoDict.plist"),
+              let preViewName = infoDict.value(forKey: "preview") as? String else { return }
+        
+        let nameArr = preViewName.components(separatedBy: CharacterSet.init(charactersIn: "_"))
+        var caseDir = ""
+        for i in (0..<nameArr.count - 2) {
+            caseDir += nameArr[i]
+        }
+        
+        let toPath = workDir + caseDir + ".zip"
+        let srcDir = workDir + "Cache/"
+        SSZipArchive.createZipFile(atPath: toPath, withContentsOfDirectory: srcDir)
+        
+        //开始上传服务器了
+        
+        try! FileManager.default.removeItem(atPath: toPath)
     }
     
     func copyFilesFrom(_ dirName:String) {

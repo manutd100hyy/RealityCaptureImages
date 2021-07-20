@@ -1,0 +1,16 @@
+Target dependency graph (9 targets)
+SSZipArchive-iOS in Pods
+Pods-core-ObjectiveCExample in Pods, depends on:
+SSZipArchive-iOS in Pods (explicit)
+Pods-core-ObjectiveCExampleTests_iOS in Pods, depends on:
+SSZipArchive-iOS in Pods (explicit)
+SSZipArchive-macOS in Pods
+Pods-core-ObjectiveCExampleTests_macOS in Pods, depends on:
+SSZipArchive-macOS in Pods (explicit)
+SSZipArchive-tvOS in Pods
+Pods-core-ObjectiveCExampleTests_tvOS in Pods, depends on:
+SSZipArchive-tvOS in Pods (explicit)
+Pods-core-SwiftExample in Pods, depends on:
+SSZipArchive-iOS in Pods (explicit)
+Pods-core-SwiftExample_macOS in Pods, depends on:
+SSZipArchive-macOS in Pods (explicit)
