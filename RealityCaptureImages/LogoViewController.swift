@@ -8,6 +8,10 @@
 import UIKit
 
 class LogoViewController: UIViewController {
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

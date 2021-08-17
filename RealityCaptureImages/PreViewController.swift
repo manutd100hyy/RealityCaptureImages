@@ -43,6 +43,14 @@ class PreViewController: UIViewController {
             $0.contains(".jpg")
         }
         
+        self.imgNames.sort { str0, str1 in
+            var preStr = str0.components(separatedBy: CharacterSet.init(charactersIn: ".")).first
+            var nxtStr = str1.components(separatedBy: CharacterSet.init(charactersIn: ".")).first
+            preStr = preStr!.components(separatedBy: CharacterSet.init(charactersIn: "_")).reversed()[1]
+            nxtStr = nxtStr!.components(separatedBy: CharacterSet.init(charactersIn: "_")).reversed()[1]
+            return Int.init(preStr!)! < Int.init(nxtStr!)!
+        }
+        
         if self.imgNames.count > 0 {
             self.curImgIndex = 0
         }

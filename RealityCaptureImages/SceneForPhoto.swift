@@ -56,7 +56,7 @@ class SceneForPhoto: CALayer {
 
         self.transformLayer.transform = CATransform3DIdentity
         //缩放
-        let sz = self.view!.frame.size
+        let sz = UIScreen.main.bounds.size
         let imgLayerRt = self.imgLayer.frame
         var imgWidthPt = CGPoint.init(x: imgLayerRt.size.width, y: 0)
         imgWidthPt = self.convertPointToWindow(imgWidthPt)

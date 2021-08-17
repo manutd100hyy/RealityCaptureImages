@@ -86,13 +86,17 @@ class ViewController: UIViewController {
     var writeIterationsComplete = 0
     var connectionIterationsComplete = 0
     let defaultIterations = 5     // change this value based on test usecase
-
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         // Set up the video preview view.
         previewView.session = session
+        previewView.videoPreviewLayer.videoGravity = .resizeAspectFill
         
         // Request location authorization so photos and videos can be tagged with their location.
         if locationManager.authorizationStatus == .notDetermined {
@@ -167,8 +171,32 @@ class ViewController: UIViewController {
             infoDict = NSMutableDictionary.init()
         }
     }
-    
-    
+    private func getCurrentDevice() -> AVCaptureDevice? {
+        var defaultVideoDevice: AVCaptureDevice?
+        
+        // Choose the back dual camera if available, otherwise default to a wide angle camera.
+        let dualCameraDeviceType: AVCaptureDevice.DeviceType
+        if #available(iOS 11, *) {
+            dualCameraDeviceType = .builtInDualCamera
+        } else {
+            dualCameraDeviceType = .builtInDuoCamera
+        }
+        
+        if let dualCameraDevice = AVCaptureDevice.default(dualCameraDeviceType, for: AVMediaType.video, position: .back) {
+            defaultVideoDevice = dualCameraDevice
+        } else if let backCameraDevice = AVCaptureDevice.default(AVCaptureDevice.DeviceType.builtInWideAngleCamera, for: AVMediaType.video, position: .back) {
+            // If the back dual camera is not available, default to the back wide angle camera.
+            defaultVideoDevice = backCameraDevice
+        } else if let frontCameraDevice = AVCaptureDevice.default(AVCaptureDevice.DeviceType.builtInWideAngleCamera, for: AVMediaType.video, position: .front) {
+            /*
+             In some cases where users break their phones, the back wide angle camera is not available.
+             In this case, we should default to the front wide angle camera.
+             */
+            defaultVideoDevice = frontCameraDevice
+        }
+        
+        return defaultVideoDevice
+    }
     // Call this on the session queue.
     /// - Tag: ConfigureSession
     private func configureSession() {
@@ -186,29 +214,30 @@ class ViewController: UIViewController {
         
         // Add video input.
         do {
-            var defaultVideoDevice: AVCaptureDevice?
-            
-            // Choose the back dual camera, if available, otherwise default to a wide angle camera.
-            
-            if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
-                defaultVideoDevice = dualCameraDevice
-            } else if let dualWideCameraDevice = AVCaptureDevice.default(.builtInDualWideCamera, for: .video, position: .back) {
-                // If a rear dual camera is not available, default to the rear dual wide camera.
-                defaultVideoDevice = dualWideCameraDevice
-            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
-                // If a rear dual wide camera is not available, default to the rear wide angle camera.
-                defaultVideoDevice = backCameraDevice
-            } else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
-                // If the rear wide angle camera isn't available, default to the front wide angle camera.
-                defaultVideoDevice = frontCameraDevice
-            }
-            guard let videoDevice = defaultVideoDevice else {
-                print("Default video device is unavailable.")
-                setupResult = .configurationFailed
-                session.commitConfiguration()
-                return
-            }
-            let videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
+//            var defaultVideoDevice: AVCaptureDevice?
+//
+//            // Choose the back dual camera, if available, otherwise default to a wide angle camera.
+//
+//            if let dualCameraDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
+//                defaultVideoDevice = dualCameraDevice
+//            } else if let dualWideCameraDevice = AVCaptureDevice.default(.builtInDualWideCamera, for: .video, position: .back) {
+//                // If a rear dual camera is not available, default to the rear dual wide camera.
+//                defaultVideoDevice = dualWideCameraDevice
+//            } else if let backCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
+//                // If a rear dual wide camera is not available, default to the rear wide angle camera.
+//                defaultVideoDevice = backCameraDevice
+//            } else if let frontCameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
+//                // If the rear wide angle camera isn't available, default to the front wide angle camera.
+//                defaultVideoDevice = frontCameraDevice
+//            }
+//            guard let videoDevice = defaultVideoDevice else {
+//                print("Default video device is unavailable.")
+//                setupResult = .configurationFailed
+//                session.commitConfiguration()
+//                return
+//            }
+//            let videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
+            let videoDeviceInput = try AVCaptureDeviceInput(device: self.getCurrentDevice()!)
             
             if session.canAddInput(videoDeviceInput) {
                 session.addInput(videoDeviceInput)

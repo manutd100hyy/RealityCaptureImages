@@ -72,6 +72,12 @@ class SaveCaseViewController: UIViewController {
         
         //开始拷贝操作
         copyFilesFrom(dirName)
+        
+        let alertController = UIAlertController(title: "提示", message: "保存成功", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                                                style: .cancel,
+                                                handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     @IBAction func btnUploadCaseAction(_ sender: Any) {
         guard let infoDict = NSMutableDictionary.init(contentsOfFile: workDir + "infoDict.plist"),
