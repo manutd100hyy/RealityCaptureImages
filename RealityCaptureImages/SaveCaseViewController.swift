@@ -31,6 +31,13 @@ class SaveCaseViewController: UIViewController {
             dateFormatter.locale = Locale.current
             caseDatePicker.date = dateFormatter.date(from: caseTime)!
         }
+        else {
+            let dformatter = DateFormatter()
+            dformatter.dateFormat = "yyyy_MM_dd_HH_mm_ss_SSS"
+            let caseTime = dformatter.string(from: caseDatePicker.date)
+            infoDict.setValue(caseTime, forKey: "caseTime")
+            infoDict.write(toFile: workDir + "infoDict.plist", atomically: true)
+        }
         
         if let loc = infoDict.value(forKey: "location") as? String {
             caseTextfield.text = loc
@@ -58,6 +65,22 @@ class SaveCaseViewController: UIViewController {
         guard let infoDict = NSMutableDictionary.init(contentsOfFile: workDir + "infoDict.plist"),
               let preViewName = infoDict.value(forKey: "preview") as? String else { return }
         
+        if infoDict.value(forKey: "caseTime") == nil {
+            let alertController = UIAlertController(title: "警告", message: "获取事故时间失败，请重试!", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        if infoDict.value(forKey: "location") == nil {
+            let alertController = UIAlertController(title: "警告", message: "获取事故地点失败，请重试!", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+        
         let nameArr = preViewName.components(separatedBy: CharacterSet.init(charactersIn: "_"))
         var caseDir = ""
         for i in (0..<nameArr.count - 2) {
@@ -68,6 +91,11 @@ class SaveCaseViewController: UIViewController {
         if FileManager.default.fileExists(atPath: dirName) {
             //该案例已经存在
             deleteFileFromPath(nil, "Cases/" + caseDir)
+        }
+        
+        if infoDict.value(forKey: "caseDir") == nil {
+            infoDict.setValue(caseDir, forKey: "caseDir")
+            infoDict.write(toFile: workDir + "infoDict.plist", atomically: true)
         }
         
         //开始拷贝操作
@@ -83,19 +111,39 @@ class SaveCaseViewController: UIViewController {
         guard let infoDict = NSMutableDictionary.init(contentsOfFile: workDir + "infoDict.plist"),
               let preViewName = infoDict.value(forKey: "preview") as? String else { return }
         
+        if infoDict.value(forKey: "caseDir") == nil {
+            let alertController = UIAlertController(title: "警告", message: "请先保存该案例!", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+        
         let nameArr = preViewName.components(separatedBy: CharacterSet.init(charactersIn: "_"))
         var caseDir = ""
         for i in (0..<nameArr.count - 2) {
             caseDir += nameArr[i]
         }
         
+        let dictDir = workDir + "Cache/rcRes/"
+        try! FileManager.default.createDirectory(atPath: dictDir, withIntermediateDirectories: true, attributes: nil)
+        try? FileManager.default.copyItem(atPath:workDir + "infoDict.plist", toPath: dictDir + "infoDict.plist")
+        try? FileManager.default.copyItem(atPath:workDir + "Cache/" + preViewName + ".jpg", toPath: dictDir + "preViewImage.jpg")
         let toPath = workDir + caseDir + ".zip"
         let srcDir = workDir + "Cache/"
         SSZipArchive.createZipFile(atPath: toPath, withContentsOfDirectory: srcDir)
         
         //开始上传服务器了
         
-        try! FileManager.default.removeItem(atPath: toPath)
+        //上传成功后删除该压缩包
+        //try! FileManager.default.removeItem(atPath: toPath)
+        try! FileManager.default.removeItem(atPath: dictDir)
+        
+        let alertController = UIAlertController(title: "提示", message: "上传成功", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"),
+                                                style: .cancel,
+                                                handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func copyFilesFrom(_ dirName:String) {
@@ -129,6 +177,7 @@ class SaveCaseViewController: UIViewController {
 
 
 class OpenCaseViewController: SaveCaseViewController {
+    var delegate:BrowseCaseViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -148,5 +197,18 @@ class OpenCaseViewController: SaveCaseViewController {
         let vc = storyboard.instantiateViewController(identifier:"PreView")
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
+    }
+    @IBAction func btnDelCaseAction(_ sender: Any) {
+        let alertController = UIAlertController(title: "警告", message: "确认删除该案例?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+        let okAction = UIAlertAction(title: "确认", style: .default) { _ in
+            try! FileManager.default.removeItem(atPath: self.workDir)
+            self.delegate?.updateCaseFiles()
+            self.delegate?.curCollectionView.reloadData()
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class BrowseCaseViewController: UIViewController {
     
+    @IBOutlet weak var curCollectionView: UICollectionView!
     var caseDirs:[String] = []
     var caseTimes:[String] = []
 
@@ -16,6 +17,13 @@ class BrowseCaseViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.updateCaseFiles()
+    }
+    
+    func updateCaseFiles() {
+        caseDirs.removeAll()
+        caseTimes.removeAll()
+        
         caseDirs = try! FileManager.default.contentsOfDirectory(atPath:NSHomeDirectory() + "/Documents/Cases/")
         
         for dir in caseDirs {
@@ -25,7 +33,6 @@ class BrowseCaseViewController: UIViewController {
             caseTimes.append(imgName)
         }
     }
-    
 }
 
 extension BrowseCaseViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -64,6 +71,7 @@ extension BrowseCaseViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier:"OpenInfo") as! OpenCaseViewController
+        vc.delegate = self
         vc.workDir = NSHomeDirectory() + "/Documents/Cases/" + caseDirs[indexPath.row] + "/"
         present(vc, animated: true, completion: nil)
     }

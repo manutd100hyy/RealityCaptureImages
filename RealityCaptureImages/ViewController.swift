@@ -154,6 +154,21 @@ class ViewController: UIViewController {
             self.btnCapture.center = CGPoint.init(x: self.view.frame.size.width - 75, y: self.view.frame.size.height/2);
             self.btnCapture.type = .init(LeafButtonTypeCamera.rawValue)
             self.btnCapture.clickedBlock = { [unowned self](btn) in
+                if imagesCounter == 0, !self.isLasering {
+                    //第一张需要提醒是否开启激光
+                    let alertController = UIAlertController(title: "提示", message: "请打开激光测距仪!", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "忽略", style: .cancel) { _ in
+                        self.captureSession()
+                    }
+                    let okAction = UIAlertAction(title: "打开", style: .default) { _ in
+                        self.doLaserDist(btnLaserFlag)
+                    }
+                    alertController.addAction(cancelAction)
+                    alertController.addAction(okAction)
+                    present(alertController, animated: true, completion: nil)
+                    return
+                }
+                
                 self.captureSession()
             }
             self.view.addSubview(self.btnCapture);
@@ -518,6 +533,7 @@ class ViewController: UIViewController {
             btnLaserFlag.setImage(UIImage.init(systemName: "flag.fill"), for: .normal)
             btnLaserFlag.isEnabled = false
             btnPreView.isEnabled = false
+            self.btnCapture.isHidden = true
 
             self.laseringImgName = self.captureImgName
             applyCommand(cmd: .measure)
@@ -537,10 +553,23 @@ class ViewController: UIViewController {
         guard let imgName = self.laseringImgName else { return }
         
         guard let dist = dist else {
+            try! FileManager.default.removeItem(atPath: generateFilePath(self.laseringImgName! + ".jpg", "Cache"))
+            try! FileManager.default.removeItem(atPath: generateFilePath(self.laseringImgName! + ".jpg", "Thumb"))
+
             self.laseringImgName = nil
             btnLaserFlag.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
             btnLaserFlag.tintColor = UIColor.black
             btnLaserFlag.isEnabled = true
+            self.btnCapture.isHidden = false
+            
+            self.imagesCounter -= 1
+            if self.imagesCounter == 0 {
+                infoDict.removeObject(forKey: "preview")
+                infoDict.write(toFile: NSHomeDirectory() + "/Documents/infoDict.plist", atomically: true)
+                self.btnPreView.isHidden = true
+                self.labImageNum.isHidden = true
+            }
+
             let alertController = UIAlertController(title: "警告", message: "获取激光距离失败，请重试!", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
@@ -555,7 +584,7 @@ class ViewController: UIViewController {
         }
         
         let obj = NSMutableDictionary.init()
-        obj.setValue(imgName, forKey: "imgName")
+        obj.setValue(self.imagesCounter - 1, forKey: "imgIdx")
         obj.setValue(dist, forKey: "dist")
         
         arr!.add(obj)
@@ -567,6 +596,7 @@ class ViewController: UIViewController {
         btnLaserFlag.tintColor = UIColor.black
         btnLaserFlag.isEnabled = true
         btnPreView.isEnabled = true
+        self.btnCapture.isHidden = false
     }
 
     @IBAction func btnPreViewAction(_ sender: Any) {

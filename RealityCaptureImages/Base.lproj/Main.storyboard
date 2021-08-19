@@ -499,6 +499,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wzr-Zp-WCQ"/>
+                    <connections>
+                        <outlet property="curCollectionView" destination="GGq-Nh-ta5" id="V0E-6l-pMV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jxo-0i-wKL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -685,14 +688,6 @@
                                 <exclude reference="uMx-Yo-bB0"/>
                                 <exclude reference="utw-IA-NNQ"/>
                                 <exclude reference="wI3-cb-qWd"/>
-                                <exclude reference="1d3-h6-FGv"/>
-                                <exclude reference="5H7-qS-wS3"/>
-                                <exclude reference="Dad-1j-Nh4"/>
-                                <exclude reference="NbV-lx-Pgx"/>
-                                <exclude reference="WOn-yq-aLe"/>
-                                <exclude reference="aax-mM-F2N"/>
-                                <exclude reference="lWG-NX-HTh"/>
-                                <exclude reference="zBS-Z8-EMx"/>
                                 <exclude reference="05u-Ol-2OI"/>
                                 <exclude reference="CMs-CW-F8z"/>
                                 <exclude reference="Cge-Bd-hWR"/>
@@ -703,6 +698,14 @@
                                 <exclude reference="vVZ-3O-565"/>
                                 <exclude reference="yqe-EL-Nc2"/>
                                 <exclude reference="ztI-WJ-glS"/>
+                                <exclude reference="1d3-h6-FGv"/>
+                                <exclude reference="5H7-qS-wS3"/>
+                                <exclude reference="Dad-1j-Nh4"/>
+                                <exclude reference="NbV-lx-Pgx"/>
+                                <exclude reference="WOn-yq-aLe"/>
+                                <exclude reference="aax-mM-F2N"/>
+                                <exclude reference="lWG-NX-HTh"/>
+                                <exclude reference="zBS-Z8-EMx"/>
                                 <exclude reference="1iF-tq-ulA"/>
                                 <exclude reference="5Yh-Ek-r58"/>
                                 <exclude reference="DFO-4J-shl"/>
@@ -732,16 +735,16 @@
                                 <exclude reference="h6q-YM-GWV"/>
                                 <exclude reference="qLt-RQ-Ll7"/>
                                 <include reference="wI3-cb-qWd"/>
-                                <exclude reference="5H7-qS-wS3"/>
-                                <exclude reference="NbV-lx-Pgx"/>
-                                <include reference="WOn-yq-aLe"/>
-                                <include reference="lWG-NX-HTh"/>
                                 <exclude reference="05u-Ol-2OI"/>
                                 <exclude reference="CMs-CW-F8z"/>
                                 <include reference="Cge-Bd-hWR"/>
                                 <exclude reference="RdJ-Hq-6mS"/>
                                 <exclude reference="XTz-yj-Ado"/>
                                 <exclude reference="ztI-WJ-glS"/>
+                                <exclude reference="5H7-qS-wS3"/>
+                                <exclude reference="NbV-lx-Pgx"/>
+                                <include reference="WOn-yq-aLe"/>
+                                <include reference="lWG-NX-HTh"/>
                                 <exclude reference="1iF-tq-ulA"/>
                                 <exclude reference="S5H-4h-oLp"/>
                                 <exclude reference="S9y-Lm-XAy"/>
@@ -763,10 +766,10 @@
                                 <include reference="V4o-to-cG6"/>
                                 <exclude reference="uMx-Yo-bB0"/>
                                 <include reference="utw-IA-NNQ"/>
-                                <include reference="aax-mM-F2N"/>
-                                <include reference="zBS-Z8-EMx"/>
                                 <include reference="Va7-0o-DV7"/>
                                 <include reference="bmr-xS-WcN"/>
+                                <include reference="aax-mM-F2N"/>
+                                <include reference="zBS-Z8-EMx"/>
                                 <include reference="5Yh-Ek-r58"/>
                                 <include reference="zLs-J2-bwn"/>
                             </mask>
@@ -873,12 +876,21 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUA-pQ-ms6">
-                                <rect key="frame" x="421.5" y="696" width="61" height="48"/>
+                                <rect key="frame" x="321.5" y="696" width="61" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="打开"/>
                                 <connections>
                                     <action selector="btnOpenCaseAction:" destination="svN-yv-6py" eventType="touchUpInside" id="nBq-NS-PyO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCm-dc-ghe">
+                                <rect key="frame" x="421.5" y="696" width="61" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="删除"/>
+                                <connections>
+                                    <action selector="btnDelCaseAction:" destination="svN-yv-6py" eventType="touchUpInside" id="l8l-T4-480"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -898,11 +910,13 @@
                             <constraint firstItem="dJb-A3-WPK" firstAttribute="leading" secondItem="z4f-8O-irT" secondAttribute="leading" id="NtT-63-EEe"/>
                             <constraint firstItem="dJb-A3-WPK" firstAttribute="top" secondItem="z4f-8O-irT" secondAttribute="bottom" constant="70" id="QUx-jd-nkL"/>
                             <constraint firstItem="Qge-3V-Nvk" firstAttribute="bottom" secondItem="W9m-J2-Z4W" secondAttribute="bottom" constant="163" id="S3e-bC-B5R"/>
-                            <constraint firstItem="WUA-pQ-ms6" firstAttribute="centerX" secondItem="Qge-3V-Nvk" secondAttribute="centerX" constant="100" id="X9X-8H-clb"/>
+                            <constraint firstItem="WUA-pQ-ms6" firstAttribute="centerX" secondItem="Qge-3V-Nvk" secondAttribute="centerX" id="X9X-8H-clb"/>
                             <constraint firstItem="Qge-3V-Nvk" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dmU-S6-EzO" secondAttribute="trailing" symbolic="YES" id="b8U-0m-ZF3"/>
+                            <constraint firstItem="aCm-dc-ghe" firstAttribute="centerX" secondItem="Qge-3V-Nvk" secondAttribute="centerX" constant="100" id="cA3-mg-wrR"/>
                             <constraint firstItem="rcZ-fj-owc" firstAttribute="leading" secondItem="z4f-8O-irT" secondAttribute="leading" id="e2x-0F-qPv"/>
                             <constraint firstItem="eZh-zn-7Ru" firstAttribute="leading" secondItem="dJb-A3-WPK" secondAttribute="leading" id="fbh-QM-9LE"/>
                             <constraint firstItem="F9l-xW-1wi" firstAttribute="top" secondItem="Qge-3V-Nvk" secondAttribute="top" constant="40" id="gaB-uv-dqY"/>
+                            <constraint firstItem="aCm-dc-ghe" firstAttribute="centerY" secondItem="WUA-pQ-ms6" secondAttribute="centerY" id="ixK-Sc-1bz"/>
                             <constraint firstItem="W9m-J2-Z4W" firstAttribute="centerX" secondItem="Qge-3V-Nvk" secondAttribute="centerX" id="lfw-ab-IW9"/>
                             <constraint firstItem="dmU-S6-EzO" firstAttribute="top" secondItem="mHV-ir-iCe" secondAttribute="bottom" constant="50" id="mJ2-la-8Xz"/>
                             <constraint firstItem="dJb-A3-WPK" firstAttribute="top" secondItem="eZh-zn-7Ru" secondAttribute="bottom" constant="8" symbolic="YES" id="no4-1E-3sV"/>
@@ -918,11 +932,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LGO-ZS-8v6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="31"/>
+            <point key="canvasLocation" x="731.6582914572864" y="30.935251798561154"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Max-eJ-XdW"/>
+        <segue reference="XXi-Yd-BvD"/>
         <segue reference="Hpu-kC-zZb"/>
     </inferredMetricsTieBreakers>
     <resources>
