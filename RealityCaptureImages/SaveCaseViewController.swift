@@ -129,7 +129,7 @@ class SaveCaseViewController: UIViewController {
         try! FileManager.default.createDirectory(atPath: dictDir, withIntermediateDirectories: true, attributes: nil)
         try? FileManager.default.copyItem(atPath:workDir + "infoDict.plist", toPath: dictDir + "infoDict.plist")
         try? FileManager.default.copyItem(atPath:workDir + "Cache/" + preViewName + ".jpg", toPath: dictDir + "preViewImage.jpg")
-        let toPath = workDir + caseDir + ".zip"
+        let toPath = NSHomeDirectory() + "/Documents/" + caseDir + ".zip"
         let srcDir = workDir + "Cache/"
         SSZipArchive.createZipFile(atPath: toPath, withContentsOfDirectory: srcDir)
         

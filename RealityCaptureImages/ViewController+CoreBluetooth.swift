@@ -13,6 +13,7 @@ enum LaserCMD {
     case turnon
     case turnoff
     case measure
+    case seq_measure
     case headOrTail
     case range
     case resolution
@@ -78,7 +79,7 @@ extension ViewController {
      *  This cancels any subscriptions if there are any, or straight disconnects if not.
      *  (didUpdateNotificationStateForCharacteristic will cancel the connection if a subscription is involved)
      */
-    private func cleanup() {
+    public func cleanup() {
         // Don't do anything if we're not connected
         guard let discoveredPeripheral = discoveredPeripheral,
             case .connected = discoveredPeripheral.state else { return }
@@ -95,7 +96,7 @@ extension ViewController {
         // If we've gotten this far, we're connected, but we're not subscribed, so we just disconnect
         centralManager.cancelPeripheralConnection(discoveredPeripheral)
         
-        self.btnLaserFlag.isHidden = true
+        self.laserFlag = false
     }
     
     func hexIntToStr(HexInt:Int) -> String {
@@ -130,7 +131,7 @@ extension ViewController {
         return Str
      }
     
-    func applyCommand(cmd:LaserCMD) {
+    func applyCommand(cmd:LaserCMD, done:LaserBlock?) {
         guard let discoveredPeripheral = discoveredPeripheral,
                 let transferCharacteristic = transferCharacteristic
             else { return }
@@ -143,6 +144,8 @@ extension ViewController {
             str = "8006050075"
         case .measure:
             str = "80060278"
+        case .seq_measure:
+            str = "80060377"
         case .headOrTail:
             str = "FA040800FA"
         case .range:
@@ -153,6 +156,8 @@ extension ViewController {
         
         let data = str.hexadecimal()!
         discoveredPeripheral.writeValue(data, for: transferCharacteristic, type: .withoutResponse)
+        
+        self.laserBlock = done
     }
 }
 
@@ -237,8 +242,6 @@ extension ViewController: CBCentralManagerDelegate {
             // And finally, connect to the peripheral.
             os_log("Connecting to perhiperal %@", peripheral)
             centralManager.connect(peripheral, options: nil)
-            
-            self.btnLaserFlag.isHidden = false
         }
     }
 
@@ -347,6 +350,8 @@ extension ViewController: CBPeripheralDelegate {
                 
 //                applyCommand(cmd: .range)
 //                applyCommand(cmd: .resolution)
+            
+                self.initLaserAction()
             }
         }
         
@@ -379,7 +384,6 @@ extension ViewController: CBPeripheralDelegate {
         }
         
         if !isDistRes {
-            updateLaserDataIfNeeds(nil)
             return
         }
         
@@ -395,8 +399,10 @@ extension ViewController: CBPeripheralDelegate {
         let dist = Int((distStr as NSString).floatValue * 100)
         let stringFromData = String.init(describing:dist)
         os_log("Received %d bytes: %s", characteristicData.count, stringFromData)
-        
-        updateLaserDataIfNeeds(stringFromData)
+                
+        if (self.laserBlock != nil) {
+            self.laserBlock!(dist + self.laserDistOffset)
+        }
         
 //        DispatchQueue.main.async() {
 //            self.labImageNum.isHidden = false

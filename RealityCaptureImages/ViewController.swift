@@ -38,10 +38,8 @@ class ViewController: UIViewController {
     }
 
     var captureImgName: String?
-    var laseringImgName:String?
     var btnCapture: LeafButton!
     var imagesCounter = 0
-    var isLasering = false
     var infoDict:NSMutableDictionary!
     
     @IBOutlet weak var previewView: PreviewView!
@@ -86,6 +84,20 @@ class ViewController: UIViewController {
     var writeIterationsComplete = 0
     var connectionIterationsComplete = 0
     let defaultIterations = 5     // change this value based on test usecase
+    
+    var laserFlag : Bool = false {
+        didSet {
+            self.btnLaserFlag.isHidden = !laserFlag
+            self.pinLaserCenter.isHidden = !laserFlag
+            
+            if !laserFlag {
+                self.applyCommand(cmd: .turnoff, done: nil)
+            }
+        }
+    }
+    typealias LaserBlock = (_ dist:Int) -> Void;
+    var laserBlock : LaserBlock?
+    var laserDistOffset = UserDefaults.standard.integer(forKey: "offset") //默认模具的偏差是6厘米
     
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
@@ -154,21 +166,6 @@ class ViewController: UIViewController {
             self.btnCapture.center = CGPoint.init(x: self.view.frame.size.width - 75, y: self.view.frame.size.height/2);
             self.btnCapture.type = .init(LeafButtonTypeCamera.rawValue)
             self.btnCapture.clickedBlock = { [unowned self](btn) in
-                if imagesCounter == 0, !self.isLasering {
-                    //第一张需要提醒是否开启激光
-                    let alertController = UIAlertController(title: "提示", message: "请打开激光测距仪!", preferredStyle: .alert)
-                    let cancelAction = UIAlertAction(title: "忽略", style: .cancel) { _ in
-                        self.captureSession()
-                    }
-                    let okAction = UIAlertAction(title: "打开", style: .default) { _ in
-                        self.doLaserDist(btnLaserFlag)
-                    }
-                    alertController.addAction(cancelAction)
-                    alertController.addAction(okAction)
-                    present(alertController, animated: true, completion: nil)
-                    return
-                }
-                
                 self.captureSession()
             }
             self.view.addSubview(self.btnCapture);
@@ -399,6 +396,7 @@ class ViewController: UIViewController {
         // Don't keep it going while we're not showing.
         centralManager.stopScan()
         os_log("Scanning stopped")
+        self.laserFlag = false
         
         super.viewWillDisappear(animated)
     }
@@ -435,22 +433,26 @@ class ViewController: UIViewController {
         return dformatter.string(from: now)
     }
     
-    @IBAction func doLaserDist(_ sender: UIButton) {
-        if !self.isLasering {
-            sender.setImage(UIImage.init(systemName: "flag"), for: .normal)
-            sender.tintColor = UIColor.red
-            applyCommand(cmd: .turnon)
-            self.pinLaserCenter.isHidden = false
-        }
-        else {
-            sender.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
-            sender.tintColor = UIColor.black
-            applyCommand(cmd: .turnoff)
-            self.pinLaserCenter.isHidden = true
-        }
+    func initLaserAction() {
+        self.laserFlag = true
+
+        let alert = UIAlertController(title: "提示", message: "发现激光雷达，正在初始化", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
         
-        self.isLasering = !self.isLasering
+        self.laserBlock = {_ in
+            DispatchQueue.main.async {
+                alert.message = "激光雷达初始化完毕!"
+                let cancelAction = UIAlertAction(title: "继续", style: .cancel) { _ in
+                    self.applyCommand(cmd: .turnon, done: nil)
+                }
+                alert.addAction(cancelAction)
+            }
+            
+            self.laserBlock = nil
+        }
+        self.applyCommand(cmd: .seq_measure, done: self.laserBlock)
     }
+    
     @IBAction func focusAndExposeTap(_ gestureRecognizer: UITapGestureRecognizer) {
         let devicePoint = previewView.videoPreviewLayer.captureDevicePointConverted(fromLayerPoint: gestureRecognizer.location(in: gestureRecognizer.view))
         focus(with: .autoFocus, exposureMode: .autoExpose, at: devicePoint, monitorSubjectAreaChange: true)
@@ -525,78 +527,19 @@ class ViewController: UIViewController {
         //获取当前时间
 
         self.captureImgName = self.getCurrentTime()
-                
-        if self.isLasering {
-            //设置读取距离时的按钮状态:提示按钮变图标，瞄准框隐藏
-            self.isLasering = false
-            pinLaserCenter.isHidden = true
-            btnLaserFlag.setImage(UIImage.init(systemName: "flag.fill"), for: .normal)
-            btnLaserFlag.isEnabled = false
-            btnPreView.isEnabled = false
-            self.btnCapture.isHidden = true
-
-            self.laseringImgName = self.captureImgName
-            applyCommand(cmd: .measure)
-        }
     }
     
-    func updateCaseInfoIfNeeds() {
+    func updateCaseInfoIfNeeds(_ dist:Int) {
         if infoDict.object(forKey: "preview") != nil {
             return
         }
         
+        if dist > 0 {
+            infoDict.setValue(dist, forKey: "dist")
+        }
+        
         infoDict.setValue( self.captureImgName, forKey: "preview")
         infoDict.write(toFile: NSHomeDirectory() + "/Documents/infoDict.plist", atomically: true)
-    }
-    
-    func updateLaserDataIfNeeds(_ dist:String?) {
-        guard let imgName = self.laseringImgName else { return }
-        
-        guard let dist = dist else {
-            try! FileManager.default.removeItem(atPath: generateFilePath(self.laseringImgName! + ".jpg", "Cache"))
-            try! FileManager.default.removeItem(atPath: generateFilePath(self.laseringImgName! + ".jpg", "Thumb"))
-
-            self.laseringImgName = nil
-            btnLaserFlag.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
-            btnLaserFlag.tintColor = UIColor.black
-            btnLaserFlag.isEnabled = true
-            self.btnCapture.isHidden = false
-            
-            self.imagesCounter -= 1
-            if self.imagesCounter == 0 {
-                infoDict.removeObject(forKey: "preview")
-                infoDict.write(toFile: NSHomeDirectory() + "/Documents/infoDict.plist", atomically: true)
-                self.btnPreView.isHidden = true
-                self.labImageNum.isHidden = true
-            }
-
-            let alertController = UIAlertController(title: "警告", message: "获取激光距离失败，请重试!", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            present(alertController, animated: true, completion: nil)
-            return
-        }
-        
-        var arr = infoDict.object(forKey: "arr") as? NSMutableArray
-        if arr == nil {
-            arr = NSMutableArray.init()
-            infoDict.setValue(arr, forKey: "arr")
-        }
-        
-        let obj = NSMutableDictionary.init()
-        obj.setValue(self.imagesCounter - 1, forKey: "imgIdx")
-        obj.setValue(dist, forKey: "dist")
-        
-        arr!.add(obj)
-        
-        infoDict.write(toFile: NSHomeDirectory() + "/Documents/infoDict.plist", atomically: true)
-
-        self.laseringImgName = nil
-        btnLaserFlag.setImage(UIImage.init(systemName: "flag.slash"), for: .normal)
-        btnLaserFlag.tintColor = UIColor.black
-        btnLaserFlag.isEnabled = true
-        btnPreView.isEnabled = true
-        self.btnCapture.isHidden = false
     }
 
     @IBAction func btnPreViewAction(_ sender: Any) {
@@ -620,6 +563,26 @@ class ViewController: UIViewController {
         self.labImageNum.isHidden = false
         self.labImageNum.text = String.init(format: "共%d张", self.imagesCounter)
     }
+    
+    func updateImgInfoWith(_ image:UIImage) {
+        guard let imgTime = self.captureImgName else {
+            return
+        }
+        
+        self.imagesCounter += 1
+
+        let imgName = imgTime + ".jpg"
+        try? image.jpegData(compressionQuality: 1)?.write(to: URL.init(fileURLWithPath: generateFilePath(imgName, "Cache")))
+        
+        DispatchQueue.main.async {
+            self.refreshPreImgWnd(image.reSizeImage(reSize: CGSize.init(width: 50, height: 50)))
+        }
+        
+        try? image.reSizeImage(reSize: CGSize.init(width: 140, height: 105)).jpegData(compressionQuality: 0.1)?.write(to: URL.init(fileURLWithPath: generateFilePath(imgName, "Thumb")))
+        
+        self.laserFlag = false
+        self.captureImgName = nil;
+    }
 }
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
@@ -638,24 +601,31 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
             return
         }
         
-        guard let imgTime = self.captureImgName, let data = photo.fileDataRepresentation(), let image =  UIImage(data: data)  else {
+        guard let data = photo.fileDataRepresentation(), let image =  UIImage(data: data)  else {
             return
         }
         
-        self.imagesCounter += 1
-
-        let imgName = imgTime + ".jpg"
-        try? image.jpegData(compressionQuality: 1)?.write(to: URL.init(fileURLWithPath: generateFilePath(imgName, "Cache")))
-        
-        DispatchQueue.main.async {
-            self.refreshPreImgWnd(image.reSizeImage(reSize: CGSize.init(width: 50, height: 50)))
+        if !self.laserFlag {
+            self.updateCaseInfoIfNeeds(-1)
+            self.updateImgInfoWith(image)
+            return
         }
         
-        try? image.reSizeImage(reSize: CGSize.init(width: 140, height: 105)).jpegData(compressionQuality: 0.1)?.write(to: URL.init(fileURLWithPath: generateFilePath(imgName, "Thumb")))
-                
-        updateCaseInfoIfNeeds()
-    
-        self.captureImgName = nil;
+        self.laserBlock = { (_ dist:Int) in
+            if dist < 0 {
+                DispatchQueue.main.async {
+                    let alertController = UIAlertController(title: "警告", message: "获取激光距离失败，请重试!", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                    alertController.addAction(cancelAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                return
+            }
+            
+            self.updateCaseInfoIfNeeds(dist)
+            self.updateImgInfoWith(image)
+        }
+        self.applyCommand(cmd: .measure, done: self.laserBlock)
     }
 }
 

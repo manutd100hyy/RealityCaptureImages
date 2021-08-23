@@ -44,11 +44,25 @@ class PreViewController: UIViewController {
         }
         
         self.imgNames.sort { str0, str1 in
-            var preStr = str0.components(separatedBy: CharacterSet.init(charactersIn: ".")).first
-            var nxtStr = str1.components(separatedBy: CharacterSet.init(charactersIn: ".")).first
-            preStr = preStr!.components(separatedBy: CharacterSet.init(charactersIn: "_")).reversed()[1]
-            nxtStr = nxtStr!.components(separatedBy: CharacterSet.init(charactersIn: "_")).reversed()[1]
-            return Int.init(preStr!)! < Int.init(nxtStr!)!
+            let preStr = str0.components(separatedBy: CharacterSet.init(charactersIn: ".")).first
+            let nxtStr = str1.components(separatedBy: CharacterSet.init(charactersIn: ".")).first
+            
+            let preArr = preStr!.components(separatedBy: CharacterSet.init(charactersIn: "_"))
+            var preCounter = ""
+            for str in preArr {
+                preCounter = preCounter + str
+            }
+            
+            let nxtArr = nxtStr!.components(separatedBy: CharacterSet.init(charactersIn: "_"))
+            var nxtCounter = ""
+            for str in nxtArr {
+                nxtCounter = nxtCounter + str
+            }
+            
+            let pre = Double.init(preCounter)!
+            let nxt = Double.init(nxtCounter)!
+
+            return pre < nxt
         }
         
         if self.imgNames.count > 0 {
@@ -72,6 +86,17 @@ class PreViewController: UIViewController {
             alertController.dismiss(animated: true, completion: nil)
             
             let imgName = self.imgNames[self.curImgIndex]
+            
+            let dictPath = NSHomeDirectory() + "/Documents/infoDict.plist"
+            let infoDict = NSMutableDictionary.init(contentsOfFile: dictPath)
+            if let infoDict = infoDict, (infoDict.object(forKey: "dist") != nil), self.curImgIndex == 0 {
+                let alertController = UIAlertController(title: "提示", message: "该照片不支持删除!", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+                return
+            }
+
             self.imgNames.remove(at: self.curImgIndex)
             if self.curImgIndex > 0 {
                 self.curImgIndex -= 1

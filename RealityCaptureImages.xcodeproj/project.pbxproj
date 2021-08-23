@@ -44,6 +44,7 @@
 		D134EF7026A5753700B236F4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D134EF6F26A5753700B236F4 /* libz.tbd */; };
 		D134EF7226A5753E00B236F4 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D134EF7126A5753E00B236F4 /* libiconv.tbd */; };
 		D134EF7426A5754B00B236F4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D134EF7326A5754B00B236F4 /* Security.framework */; };
+		D185576826D350FC00D5EACF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D185576726D350FC00D5EACF /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		D134EF6F26A5753700B236F4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D134EF7126A5753E00B236F4 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		D134EF7326A5754B00B236F4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D185576726D350FC00D5EACF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				D134EF13269EA7AA00B236F4 /* ViewController+CoreBluetooth.swift */,
 				D134EF1526A0150100B236F4 /* BrowseCaseViewController.swift */,
 				D134EF1726A0264000B236F4 /* SaveCaseViewController.swift */,
+				D185576726D350FC00D5EACF /* SettingViewController.swift */,
 			);
 			path = RealityCaptureImages;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				D134EEC92693F0E200B236F4 /* AppDelegate.swift in Sources */,
 				D134EF6826A5750C00B236F4 /* mz_os.c in Sources */,
 				D134EF6A26A5750C00B236F4 /* mz_strm_buf.c in Sources */,
+				D185576826D350FC00D5EACF /* SettingViewController.swift in Sources */,
 				D134EF6D26A5750C00B236F4 /* SSZipArchive.m in Sources */,
 				D134EF6326A5750C00B236F4 /* mz_crypt_apple.c in Sources */,
 				D134EF6726A5750C00B236F4 /* mz_compat.c in Sources */,

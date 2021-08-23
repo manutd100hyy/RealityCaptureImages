@@ -26,6 +26,13 @@ class BrowseCaseViewController: UIViewController {
         
         caseDirs = try! FileManager.default.contentsOfDirectory(atPath:NSHomeDirectory() + "/Documents/Cases/")
         
+        caseDirs.sort { str0, str1 in
+            let pre = Double.init(str0)!
+            let nxt = Double.init(str1)!
+
+            return pre > nxt
+        }
+        
         for dir in caseDirs {
             guard let infoDict = NSMutableDictionary.init(contentsOfFile:
                                                             generateFilePath("infoDict.plist", "Cases/" + dir)),

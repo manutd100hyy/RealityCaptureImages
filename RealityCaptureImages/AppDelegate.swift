@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let offset = UserDefaults.standard.object(forKey: "offset")
+        if offset == nil {
+            UserDefaults.standard.setValue("6", forKey: "offset")
+        }
+        
         return true
     }
 
