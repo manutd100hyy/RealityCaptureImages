@@ -163,7 +163,13 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.btnCapture = LeafButton.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 80, height: 80)))
-            self.btnCapture.center = CGPoint.init(x: self.view.frame.size.width - 75, y: self.view.frame.size.height/2);
+            if (UIDevice.current.userInterfaceIdiom == .phone) {
+                self.btnCapture.center = CGPoint.init(x: self.view.frame.size.width - 95, y: self.view.frame.size.height/2)
+            }
+            else {
+                self.btnCapture.center = CGPoint.init(x: self.view.frame.size.width - 75, y: self.view.frame.size.height/2)
+            }
+            
             self.btnCapture.type = .init(LeafButtonTypeCamera.rawValue)
             self.btnCapture.clickedBlock = { [unowned self](btn) in
                 self.captureSession()

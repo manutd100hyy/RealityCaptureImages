@@ -7,6 +7,18 @@
 
 import UIKit
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class SaveCaseViewController: UIViewController {
     
     var workDir = NSHomeDirectory() + "/Documents/"
@@ -42,6 +54,8 @@ class SaveCaseViewController: UIViewController {
         if let loc = infoDict.value(forKey: "location") as? String {
             caseTextfield.text = loc
         }
+        
+        self.hideKeyboardWhenTappedAround()
     }
 
     @IBAction func changeCurrentLocation(_ sender: UITextField) {
@@ -144,6 +158,10 @@ class SaveCaseViewController: UIViewController {
                                                 style: .cancel,
                                                 handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func returnActionPhone(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func copyFilesFrom(_ dirName:String) {
